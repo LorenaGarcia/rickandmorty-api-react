@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Header, Main } from "./Layout.styles";
+import PropTypes from "prop-types";
 
 const Layout = ({ children }) => {
   return (
@@ -8,6 +9,10 @@ const Layout = ({ children }) => {
       <Main>{children}</Main>
     </Container>
   );
+};
+
+Layout.propTypes = {
+  children: PropTypes.node,
 };
 
 export { Layout };

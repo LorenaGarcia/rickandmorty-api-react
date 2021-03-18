@@ -14,8 +14,6 @@ const Detail = ({ actions, characterItem }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [character]);
 
-  //   if (!props.characterItem) return <Spinner animation="border" />;
-
   return (
     <div>
       <CharacterDetail character={characterItem} />

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Container, Image, Name, Description } from "./CharacterItem.styles";
 
@@ -19,6 +20,16 @@ const CharacterItem = ({ character }) => {
       </Link>
     </Container>
   );
+};
+
+CharacterItem.propTypes = {
+  character: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    image: PropTypes.string,
+    status: PropTypes.string,
+    origin: PropTypes.object,
+  }),
 };
 
 export { CharacterItem };

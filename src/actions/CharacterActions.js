@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiUrl = "https://rickandmortyapi.com/api";
+const API_URL = "https://rickandmortyapi.com/api";
 
 export const SEARCH_CHARACTERS = "SEARCH_CHARACTERS";
 export const REQUEST_CHARACTER_ITEM = "REQUEST_CHARACTER_ITEM";
@@ -9,7 +9,7 @@ export const CHARACTERS_ERROR = "CHARACTERS_ERROR";
 export const searchCharacter = (search = null) => async (dispatch) => {
   try {
     const res = await axios.get(
-      `${apiUrl}/character/?name=${search.replace(/\s/g, "+")}`
+      `${API_URL}/character/?name=${search.replace(/\s/g, "+")}`
     );
 
     dispatch({
@@ -27,7 +27,7 @@ export const searchCharacter = (search = null) => async (dispatch) => {
 
 export const allCharacters = () => async (dispatch) => {
   try {
-    const res = await axios.get(`${apiUrl}/character`);
+    const res = await axios.get(`${API_URL}/character`);
     dispatch({
       type: "SEARCH_CHARACTERS",
       payload: res.data,
@@ -42,7 +42,7 @@ export const allCharacters = () => async (dispatch) => {
 
 export const requestCharacterItem = (id = null) => async (dispatch) => {
   try {
-    const res = await axios.get(`${apiUrl}/character/${id}`);
+    const res = await axios.get(`${API_URL}/character/${id}`);
     dispatch({
       type: "REQUEST_CHARACTER_ITEM",
       payload: res.data,

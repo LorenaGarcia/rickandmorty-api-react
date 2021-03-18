@@ -1,45 +1,49 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { Container, Input, Button, TextResult } from "./Search.styles";
 
 const Search = ({ onSearchChange, onSearchEmpty, error }) => {
-  const [search, setSearch] = useState("");
-  const [textVisible, setTextVisible] = useState(false);
+  const [queryText, setQueryText] = useState("");
 
   useEffect(() => {
-    if (search === "") {
+    if (queryText === "") {
       onSearchEmpty();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search]);
+  }, [queryText]);
 
-  const OnclickSearch = (search) => {
+  const onClickSearch = (search) => {
     onSearchChange(search);
-    setTextVisible(true);
   };
 
   return (
     <Container>
       <Input
         type="text"
+        aria-label="name"
         name="search"
         placeholder="Busca un personaje"
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => setQueryText(e.target.value)}
       />
-      <Button onClick={() => OnclickSearch(search)}>Buscar</Button>
+      <Button onClick={() => onClickSearch(queryText)}>Buscar</Button>
 
-      {textVisible && search && !error && (
+      {queryText && !error && (
         <TextResult>
-          Resultados para <strong>"{search}"</strong>
+          Resultados para <strong>{queryText}</strong>
         </TextResult>
       )}
 
-      {error && (
-        <TextResult>
-          <strong>"{error}" </strong> - Intenta de nuevo
-        </TextResult>
+      {error && queryText && (
+        <TextResult>{error} - Intenta de nuevo</TextResult>
       )}
     </Container>
   );
+};
+
+Search.propTypes = {
+  onSearchChange: PropTypes.func,
+  onSearchEmpty: PropTypes.func,
+  error: PropTypes.string,
 };
 
 export { Search };

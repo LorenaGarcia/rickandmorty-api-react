@@ -16,7 +16,6 @@ export default function charactersList(
       return {
         ...state,
         data: payload.results,
-        error: message,
       };
     case CHARACTERS_ERROR:
       return {
