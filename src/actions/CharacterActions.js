@@ -1,12 +1,12 @@
 import axios from "axios";
 
-const API_URL = "https://rickandmortyapi.com/api";
+const API_URL = process.env.REACT_APP_API_URL;
 
-export const SEARCH_CHARACTERS = "SEARCH_CHARACTERS";
-export const REQUEST_CHARACTER_ITEM = "REQUEST_CHARACTER_ITEM";
-export const CHARACTERS_ERROR = "CHARACTERS_ERROR";
+const SEARCH_CHARACTERS = "SEARCH_CHARACTERS";
+const REQUEST_CHARACTER_ITEM = "REQUEST_CHARACTER_ITEM";
+const CHARACTERS_ERROR = "CHARACTERS_ERROR";
 
-export const searchCharacter = (search = null) => async (dispatch) => {
+const searchCharacter = (search = null) => async (dispatch) => {
   try {
     const res = await axios.get(
       `${API_URL}/character/?name=${search.replace(/\s/g, "+")}`
@@ -14,7 +14,7 @@ export const searchCharacter = (search = null) => async (dispatch) => {
 
     dispatch({
       type: SEARCH_CHARACTERS,
-      payload: res.data,
+      body: res.data,
       query: search,
     });
   } catch (e) {
@@ -25,12 +25,12 @@ export const searchCharacter = (search = null) => async (dispatch) => {
   }
 };
 
-export const allCharacters = () => async (dispatch) => {
+const allCharacters = () => async (dispatch) => {
   try {
     const res = await axios.get(`${API_URL}/character`);
     dispatch({
       type: SEARCH_CHARACTERS,
-      payload: res.data,
+      body: res.data,
     });
   } catch (e) {
     dispatch({
@@ -40,12 +40,12 @@ export const allCharacters = () => async (dispatch) => {
   }
 };
 
-export const requestCharacterItem = (id = null) => async (dispatch) => {
+const requestCharacterItem = (id = null) => async (dispatch) => {
   try {
     const res = await axios.get(`${API_URL}/character/${id}`);
     dispatch({
       type: REQUEST_CHARACTER_ITEM,
-      payload: res.data,
+      body: res.data,
       character: id,
     });
   } catch (e) {
@@ -54,4 +54,13 @@ export const requestCharacterItem = (id = null) => async (dispatch) => {
       message: e.message,
     });
   }
+};
+
+export {
+  SEARCH_CHARACTERS,
+  REQUEST_CHARACTER_ITEM,
+  CHARACTERS_ERROR,
+  searchCharacter,
+  allCharacters,
+  requestCharacterItem,
 };

@@ -11,8 +11,7 @@ const Detail = ({ actions, characterItem }) => {
 
   useEffect(() => {
     actions.requestCharacterItem(character);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [character]);
+  }, [actions, character]);
 
   return (
     <div>

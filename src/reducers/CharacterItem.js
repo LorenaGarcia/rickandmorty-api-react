@@ -4,31 +4,10 @@ const initialState = {
   data: {},
 };
 
-export default function characterItem(state = initialState, { type, payload }) {
+export default function characterItem(state = initialState, { type, body }) {
   switch (type) {
     case REQUEST_CHARACTER_ITEM:
-      const {
-        name,
-        status,
-        species,
-        gender,
-        image,
-        id,
-        location,
-        origin,
-      } = payload;
-      const characterItem = {
-        name,
-        status,
-        species,
-        gender,
-        location,
-        origin,
-        image,
-        id,
-      };
-
-      return { ...state, data: characterItem };
+      return { ...state, data: body };
     default:
       return state;
   }

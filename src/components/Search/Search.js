@@ -10,8 +10,7 @@ const Search = ({ onSearchChange, onSearchEmpty, error }) => {
     if (queryText === "") {
       onSearchEmpty();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [queryText]);
+  }, [onSearchEmpty, queryText]);
 
   const onClickSearch = (e) => {
     e.preventDefault();

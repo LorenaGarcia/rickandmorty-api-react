@@ -9,13 +9,13 @@ const initialState = {
 
 export default function charactersList(
   state = initialState,
-  { type, payload, message }
+  { type, body, message }
 ) {
   switch (type) {
     case SEARCH_CHARACTERS:
       return {
         ...state,
-        data: payload.results,
+        data: body.results,
       };
     case CHARACTERS_ERROR:
       return {
