@@ -13,13 +13,13 @@ export const searchCharacter = (search = null) => async (dispatch) => {
     );
 
     dispatch({
-      type: "SEARCH_CHARACTERS",
+      type: SEARCH_CHARACTERS,
       payload: res.data,
       query: search,
     });
   } catch (e) {
     dispatch({
-      type: "CHARACTERS_ERROR",
+      type: CHARACTERS_ERROR,
       message: e.response.data && e.response.data.error,
     });
   }
@@ -29,12 +29,12 @@ export const allCharacters = () => async (dispatch) => {
   try {
     const res = await axios.get(`${API_URL}/character`);
     dispatch({
-      type: "SEARCH_CHARACTERS",
+      type: SEARCH_CHARACTERS,
       payload: res.data,
     });
   } catch (e) {
     dispatch({
-      type: "CHARACTERS_ERROR",
+      type: CHARACTERS_ERROR,
       message: e.message,
     });
   }
@@ -44,13 +44,13 @@ export const requestCharacterItem = (id = null) => async (dispatch) => {
   try {
     const res = await axios.get(`${API_URL}/character/${id}`);
     dispatch({
-      type: "REQUEST_CHARACTER_ITEM",
+      type: REQUEST_CHARACTER_ITEM,
       payload: res.data,
       character: id,
     });
   } catch (e) {
     dispatch({
-      type: "CHARACTERS_ERROR",
+      type: CHARACTERS_ERROR,
       message: e.message,
     });
   }

@@ -12,7 +12,7 @@ const List = ({ actions, characters, error }) => {
       <Search
         onSearchChange={actions.searchCharacter}
         onSearchEmpty={actions.allCharacters}
-        error={error && !characters && error}
+        error={error}
       />
       <CharactersList characters={characters} />
     </div>

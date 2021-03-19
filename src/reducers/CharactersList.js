@@ -19,6 +19,7 @@ export default function charactersList(
       };
     case CHARACTERS_ERROR:
       return {
+        ...state,
         error: message,
       };
     default:

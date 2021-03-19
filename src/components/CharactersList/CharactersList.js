@@ -4,13 +4,13 @@ import { CharacterItem } from "../CharacterItem";
 import { ContainerGrid } from "./CharactersList.styles";
 
 const CharactersList = ({ characters }) => {
-  const characterItems =
-    characters &&
-    characters.map((character) => {
-      return <CharacterItem key={character.id} character={character} />;
-    });
-
-  return <ContainerGrid>{characterItems}</ContainerGrid>;
+  return (
+    <ContainerGrid>
+      {characters.map((character) => (
+        <CharacterItem key={character.id} character={character} />
+      ))}
+    </ContainerGrid>
+  );
 };
 
 CharactersList.propTypes = {

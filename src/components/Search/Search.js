@@ -4,6 +4,7 @@ import { Container, Input, Button, TextResult } from "./Search.styles";
 
 const Search = ({ onSearchChange, onSearchEmpty, error }) => {
   const [queryText, setQueryText] = useState("");
+  const [isSearched, setIsSearched] = useState(false);
 
   useEffect(() => {
     if (queryText === "") {
@@ -12,28 +13,33 @@ const Search = ({ onSearchChange, onSearchEmpty, error }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [queryText]);
 
-  const onClickSearch = (search) => {
-    onSearchChange(search);
+  const onClickSearch = (e) => {
+    e.preventDefault();
+    setIsSearched(true);
+    onSearchChange(queryText);
   };
 
   return (
     <Container>
-      <Input
-        type="text"
-        aria-label="name"
-        name="search"
-        placeholder="Busca un personaje"
-        onChange={(e) => setQueryText(e.target.value)}
-      />
-      <Button onClick={() => onClickSearch(queryText)}>Buscar</Button>
-
-      {queryText && !error && (
+      <form>
+        <Input
+          type="text"
+          aria-label="name"
+          name="search"
+          placeholder="Busca un personaje"
+          onChange={(e) => setQueryText(e.target.value)}
+        />
+        <Button type="submit" onClick={onClickSearch}>
+          Buscar
+        </Button>
+      </form>
+      {isSearched && !error && (
         <TextResult>
           Resultados para <strong>{queryText}</strong>
         </TextResult>
       )}
 
-      {error && queryText && (
+      {error && isSearched && (
         <TextResult>{error} - Intenta de nuevo</TextResult>
       )}
     </Container>
